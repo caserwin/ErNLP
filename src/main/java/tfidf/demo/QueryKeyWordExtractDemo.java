@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class QueryKeyWordExtractDemo {
     public static void main(String[] args) throws Exception {
         // 训练
-//         QueryTFIDF.train();new
+//         QueryTFIDF.train();
         // 输出
         String content = "互联网的互联网今年行情不好";
-        ArrayList<KeyWordBean> topNKeyWord = new ExtractKeyWordTFIDF().extractKeyWords(content, 3);
+        KeyWordBean[] topNKeyWord = new ExtractKeyWordTFIDF().extractKeyWords(content, 3);
         for (KeyWordBean kw : topNKeyWord) {
             System.out.println(kw.getWord() + "-->" + kw.getWeights());
         }

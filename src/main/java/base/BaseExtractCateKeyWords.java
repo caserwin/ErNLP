@@ -2,6 +2,7 @@ package base;
 
 import util.bean.KeyWordBean;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * User: Erwin
@@ -12,6 +13,8 @@ public abstract class BaseExtractCateKeyWords {
     /**
      *
      * @param topN
+     * 1. classify word by topic.
+     * 2. also means extract word by category.
      */
-    public abstract ArrayList<KeyWordBean> extractKeyWords(int topN) throws Exception;
+    public abstract Map<String, KeyWordBean[]> extractKeyWords(int topN) throws Exception;
 }

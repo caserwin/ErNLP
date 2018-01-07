@@ -34,4 +34,9 @@ public class KeyWordBean {
     public void setWeights(float weights) {
         this.weights = weights;
     }
+
+    @Override
+    public String toString() {
+        return this.word + ":" + this.weights;
+    }
 }

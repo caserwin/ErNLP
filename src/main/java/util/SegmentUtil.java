@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class SegmentUtil {
 
-    public static List<TermBean> segmentByHanlp(String content) {
+    private static List<TermBean> segmentByHanlp(String content) {
         List<TermBean> termBeanLS = new ArrayList<>();
         List<Term> termLS = NotionalTokenizer.segment(content);
 

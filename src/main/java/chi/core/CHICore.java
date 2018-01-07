@@ -5,7 +5,6 @@ import chi.bean.CHITextBean;
 import chi.util.CHIFileUtil;
 import util.SegmentUtil;
 import util.bean.TermBean;
-
 import java.io.IOException;
 import java.util.*;
 

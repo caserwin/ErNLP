@@ -6,12 +6,10 @@ import chi.bean.CHITextBean;
 import chi.util.CHIFileUtil;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import util.CommonUtil;
 import util.bean.KeyWordBean;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author yiding
@@ -19,7 +17,9 @@ import java.util.Map;
 public class ExtractKeyWordCHI extends BaseExtractCateKeyWords {
 
     private static Config conf = ConfigFactory.parseResources("common.conf");
-
+    static {
+        System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+    }
     /**
      * 训练
      */
@@ -33,7 +33,7 @@ public class ExtractKeyWordCHI extends BaseExtractCateKeyWords {
     /**
      * 计算
      */
-    public static HashMap<String, HashMap<String, Float>> getCateKeyWord() throws IOException {
+    private static HashMap<String, HashMap<String, Float>> getCateKeyWord() throws IOException {
         CHICore chiCore = new CHICore();
         String corpusPath = conf.getString("nlp.corpus");
         // 获得所有训练文本路径
@@ -47,19 +47,18 @@ public class ExtractKeyWordCHI extends BaseExtractCateKeyWords {
         return chiCore.calculateCateWordCHI(chiList, dicWordSet, corpusPath);
     }
 
+    /**
+     * get topN for every category
+     */
     @Override
-    public ArrayList<KeyWordBean> extractKeyWords(int topN) throws Exception {
-        return null;
-    }
-
-    public static void main(String[] args) throws IOException {
-//        train();
+    public Map<String, KeyWordBean[]> extractKeyWords(int topN) throws Exception {
+        Map<String, KeyWordBean[]> cateKeyWords = new HashMap<>();
         HashMap<String, HashMap<String, Float>> categoryKeyWord = CHIFileUtil.getCHIModel(conf.getString("nlp.model.chi"));
-        for (Map.Entry cateKeyWordEntry : categoryKeyWord.entrySet()) {
-            System.out.println(cateKeyWordEntry.getKey().toString() +"\t"+ ((HashMap<String, Float>)cateKeyWordEntry.getValue()).size());
+        for (Map.Entry cateEntry : categoryKeyWord.entrySet()) {
+            String cate = cateEntry.getKey().toString();
+            KeyWordBean[] keyWords = CommonUtil.getTopN((HashMap<String, Float>) cateEntry.getValue(), topN);
+            cateKeyWords.put(cate, keyWords);
         }
-
+        return cateKeyWords;
     }
-
-
 }

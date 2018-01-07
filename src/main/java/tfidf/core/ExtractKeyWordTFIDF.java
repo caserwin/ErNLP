@@ -9,6 +9,7 @@ import com.typesafe.config.ConfigFactory;
 import tfidf.util.TFIDFFileUtil;
 import util.CommonUtil;
 import util.bean.KeyWordBean;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,17 +26,21 @@ public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
     // query 的词频统计
     private static HashMap<String, Integer> wordCount = new HashMap<>();
 
+    static {
+        System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+    }
+
     /**
      * 提取关键词
      */
     @Override
-    public ArrayList<KeyWordBean> extractKeyWords(String content, int topN) throws Exception {
+    public KeyWordBean[] extractKeyWords(String content, int topN) throws Exception {
         // 先分词
         List<Term> termList = NotionalTokenizer.segment(content);
         // 计算TD-IDF
         Map<String, Float> wordTFIDF = calculateTFIDF(termList);
         // 返回 topN 词语。
-        return getTopN(wordTFIDF, topN);
+        return CommonUtil.getTopN(wordTFIDF, topN);
     }
 
     /**
@@ -50,21 +55,6 @@ public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
         int textNumber = allTextPathList.size();
         // 保存模型, 计算每个词语在多少文章出现。
         tfc.saveIDFModel(conf.getString("nlp.model.idf"), allTextPathList, textNumber);
-    }
-
-    /**
-     * 获得 top-N 关键词
-     */
-    private static ArrayList<KeyWordBean> getTopN(Map<String, Float> wordTFIDF, int topN) {
-        ArrayList<KeyWordBean> keyWords = new ArrayList<>();
-        List<Map.Entry<String, Float>> list = new ArrayList<>();
-        list.addAll(wordTFIDF.entrySet());
-        CommonUtil.ValueComparator vc = new CommonUtil.ValueComparator();
-        list.sort(vc);
-        for (int i = 0; i < topN; i++) {
-            keyWords.add(new KeyWordBean(list.get(i).getKey(), list.get(i).getValue()));
-        }
-        return keyWords;
     }
 
     /**
@@ -92,7 +82,7 @@ public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
     /**
      * 计算每个词语的IDF值
      */
-    private static Map<String, Float> calculateIDF(List<Term> termList) throws Exception {
+    private static Map<String, Float> calculateIDF() throws Exception {
         // 用于存放每个词语的idf
         Map<String, Float> wordIDF = new HashMap<>();
         // 获取model
@@ -120,7 +110,7 @@ public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
         // 计算每个词语的TF值
         Map<String, Float> wordTF = calculateTF(termList);
         // 计算每个词语的idf值
-        Map<String, Float> wordIDF = calculateIDF(termList);
+        Map<String, Float> wordIDF = calculateIDF();
         // 存放每个词语的TF-IDF值
         Map<String, Float> wordTFIDF = new HashMap<>();
         // 计算TF-IDF值
