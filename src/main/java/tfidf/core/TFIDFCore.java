@@ -6,6 +6,7 @@ import tfidf.bean.WordTFIDFBean;
 import tfidf.util.TFIDFFileUtil;
 import util.SegmentUtil;
 import util.bean.TermBean;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ public class TFIDFCore {
 
     private HashMap<String, Integer> wordInDocNum = new HashMap<>();
     private HashSet<String> filePathSet = new HashSet<>();
+    private int segType = 1;
 
     /**
      * 封装文本
@@ -33,7 +35,7 @@ public class TFIDFCore {
             int wordNumber = 0; // 每篇文章的词语数量
             String content = BaseFileUtil.readFileAllContent(path);
             // 这种分词方式，过滤了停止词，停止词可见：https://github.com/hankcs/HanLP/blob/master/data/dictionary/stopwords.txt
-            List<TermBean> termList = SegmentUtil.segmentByHanlp(content);
+            List<TermBean> termList = SegmentUtil.segment(content, segType);
             for (TermBean term : termList) {
                 // 文章词频统计
                 if (!wordCount.containsKey(term.getWord())) {
@@ -62,7 +64,7 @@ public class TFIDFCore {
         for (String path : fileList) {
             String content = BaseFileUtil.readFileAllContent(path);
             // 这种分词方式，过滤了停止词，停止词可见：https://github.com/hankcs/HanLP/blob/master/data/dictionary/stopwords.txt
-            List<TermBean> termList = SegmentUtil.segmentByHanlp(content);
+            List<TermBean> termList = SegmentUtil.segment(content, segType);
             for (TermBean term : termList) {
                 // 统计该词语在多少篇文章中出现过
                 calculateWordInDocNum(term.getWord(), path);
@@ -77,10 +79,7 @@ public class TFIDFCore {
     public void saveTFIDFModel() throws IOException {
 
 
-
-
     }
-
 
 
     /**
@@ -168,8 +167,7 @@ public class TFIDFCore {
         // 封装文本文件
         ArrayList<TFIDFTextBean> textBeanList = tfc.getTextBean(allTextPathList);
         // 计算每个词语的tf-idf
-        HashMap<String, HashSet<WordTFIDFBean>> wordTFIDFMap =tfc.calculateTFIDFForSearch(textBeanList, textNumber);
-
+        HashMap<String, HashSet<WordTFIDFBean>> wordTFIDFMap = tfc.calculateTFIDFForSearch(textBeanList, textNumber);
 
 
 //         对文本进行分词

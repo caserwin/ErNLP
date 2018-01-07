@@ -5,6 +5,7 @@ import chi.bean.CHITextBean;
 import chi.util.CHIFileUtil;
 import util.SegmentUtil;
 import util.bean.TermBean;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -14,6 +15,7 @@ import java.util.*;
 public class CHICore {
 
     private HashSet<String> dicWordSet = new HashSet<>();
+    private int segType = 1;
 
     public HashMap<String, HashMap<String, Float>> calculateCateWordCHI(ArrayList<CHITextBean> textBeanList, HashSet<String> dicWordSet, String corpusPath) {
         long start = System.currentTimeMillis();
@@ -75,7 +77,7 @@ public class CHICore {
             HashSet<String> wordSet = new HashSet<>();
             String content = BaseFileUtil.readFileAllContent(path);
             // 这种分词方式，过滤了停止词，停止词可见：https://github.com/hankcs/HanLP/blob/master/data/dictionary/stopwords.txt
-            List<TermBean> termList = SegmentUtil.segmentByHanlp(content);
+            List<TermBean> termList = SegmentUtil.segment(content, segType);
             for (TermBean term : termList) {
                 wordSet.add(term.getWord());
                 dicWordSet.add(term.getWord());

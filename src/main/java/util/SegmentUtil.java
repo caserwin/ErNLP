@@ -3,6 +3,7 @@ package util;
 import com.hankcs.hanlp.seg.common.Term;
 import com.hankcs.hanlp.tokenizer.NotionalTokenizer;
 import util.bean.TermBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,12 @@ import java.util.List;
  */
 public class SegmentUtil {
 
-    public static List<TermBean> segmentByHanlp(String content){
+    public static List<TermBean> segmentByHanlp(String content) {
         List<TermBean> termBeanLS = new ArrayList<>();
         List<Term> termLS = NotionalTokenizer.segment(content);
 
-        for (Term term:termLS) {
-            TermBean termBean =new TermBean();
+        for (Term term : termLS) {
+            TermBean termBean = new TermBean();
             termBean.setWord(term.word);
             termBean.setNature(term.nature.toString());
             termBeanLS.add(termBean);
@@ -24,5 +25,12 @@ public class SegmentUtil {
         return termBeanLS;
     }
 
-
+    public static List<TermBean> segment(String content, int type) {
+        switch (type) {
+            case 1:
+                return segmentByHanlp(content);
+            default:
+                return segmentByHanlp(content);
+        }
+    }
 }
