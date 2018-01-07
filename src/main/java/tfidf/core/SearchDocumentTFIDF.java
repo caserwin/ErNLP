@@ -5,6 +5,8 @@ import com.hankcs.hanlp.seg.common.Term;
 import com.hankcs.hanlp.tokenizer.NotionalTokenizer;
 import tfidf.bean.TFIDFTextBean;
 import tfidf.bean.WordTFIDFBean;
+import util.ConstantUtil;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +17,25 @@ import java.util.List;
  * @author yiding
  */
 public class SearchDocumentTFIDF {
+
+
+    public static void train() throws IOException {
+        TFIDFCore tfc = new TFIDFCore();
+        // 获得所有训练文本路径
+        ArrayList<String> allTextPathList = new ArrayList<>();
+        BaseFileUtil.getAllPath(ConstantUtil.TFIDF_CORPUS, allTextPathList);
+        // 文章总数量
+        int textNumber = allTextPathList.size();
+        // 封装文本文件
+        ArrayList<TFIDFTextBean> textBeanList = tfc.getTextBean(allTextPathList);
+        // 保存tf-idf模型
+        tfc.saveTFIDFModel(ConstantUtil.TFIDF_MODEL, textBeanList, textNumber);
+    }
+
+
+
+
+
 
     public void getRelateTextBySearch(String search, int topN) throws IOException {
         // 先分词

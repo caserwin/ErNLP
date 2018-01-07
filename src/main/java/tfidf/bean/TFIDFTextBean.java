@@ -39,6 +39,6 @@ public class TFIDFTextBean {
 
     @Override
     public String toString() {
-        return this.textPath + "\t\t" + this.wordNumber + "\t\t" + this.wordCount.keySet() + "\t\t" + this.wordCount.values();
+        return this.textPath + "\t" + this.wordNumber + "\t" + this.wordCount.keySet() + "\t" + this.wordCount.values();
     }
 }

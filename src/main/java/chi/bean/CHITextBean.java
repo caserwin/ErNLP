@@ -38,7 +38,7 @@ public class CHITextBean {
 
     @Override
     public String toString(){
-        return path+"->"+category+"->"+wordset;
+        return path+"\t"+category+"\t"+wordset;
     }
 }
 

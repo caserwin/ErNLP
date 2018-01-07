@@ -2,8 +2,10 @@ package tfidf.util;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import base.BaseFileUtil;
+import tfidf.bean.WordTFIDFBean;
 
 /**
  * @author yiding
@@ -21,6 +23,20 @@ public class TFIDFFileUtil extends BaseFileUtil {
             String word = entry.getKey().toString();
             String docNum = entry.getValue().toString();
             bw.write(word + "\t" + docNum);
+            bw.newLine();
+        }
+        bw.flush();
+        bw.close();
+    }
+
+
+    /**
+     * 按行写入文件
+     */
+    public static void writeFileByLine(String filePath, List<WordTFIDFBean> wordTFIDFList) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), "utf-8"));
+        for (WordTFIDFBean wordTFIDF : wordTFIDFList) {
+            bw.write(wordTFIDF.toString());
             bw.newLine();
         }
         bw.flush();

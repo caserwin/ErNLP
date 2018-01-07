@@ -6,7 +6,6 @@ import tfidf.bean.WordTFIDFBean;
 import tfidf.util.TFIDFFileUtil;
 import util.SegmentUtil;
 import util.bean.TermBean;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
@@ -73,16 +72,16 @@ public class TFIDFCore {
     /**
      * 保存tf-idf模型
      */
-    public void saveTFIDFModel(ArrayList<TFIDFTextBean> arrTextBeans, int textNumber) throws IOException {
-        List<WordTFIDFBean> wordTFIDFMap = calculateTFIDF(arrTextBeans, textNumber);
-
+    public void saveTFIDFModel(String outPath, ArrayList<TFIDFTextBean> arrTextBeans, int textNumber) throws IOException {
+        List<WordTFIDFBean> wordTFIDFList = calculateTFIDF(arrTextBeans, textNumber);
+        TFIDFFileUtil.writeFileByLine(outPath, wordTFIDFList);
     }
 
     /**
      * 计算tf-idf
      */
-    public List<WordTFIDFBean> calculateTFIDF(ArrayList<TFIDFTextBean> arrTextBeans, int textNumber) {
-        List<WordTFIDFBean> wordTFIDFMap = new ArrayList<>();
+    private List<WordTFIDFBean> calculateTFIDF(ArrayList<TFIDFTextBean> arrTextBeans, int textNumber) {
+        List<WordTFIDFBean> wordTFIDFList = new ArrayList<>();
         for (TFIDFTextBean textBean : arrTextBeans) {
             HashMap<String, Integer> wordCount = textBean.getWordCount();
             for (Entry entry : wordCount.entrySet()) {
@@ -97,10 +96,10 @@ public class TFIDFCore {
                 wordTFIDF.setIdf(idf);
                 wordTFIDF.setTFIDF(tf * idf);
 
-                wordTFIDFMap.add(wordTFIDF);
+                wordTFIDFList.add(wordTFIDF);
             }
         }
-        return wordTFIDFMap;
+        return wordTFIDFList;
     }
 
 
@@ -176,24 +175,5 @@ public class TFIDFCore {
             pathTFIDF.put(textBean.getTextPath(), wordSet);
         }
         return pathTFIDF;
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        TFIDFCore tfc = new TFIDFCore();
-        // 获得所有训练文本路径
-        ArrayList<String> allTextPathList = new ArrayList<>();
-        BaseFileUtil.getAllPath("nlp/SogouC/Reduced/互联网", allTextPathList);
-        // 文章总数量
-        int textNumber = allTextPathList.size();
-        // 封装文本文件
-        ArrayList<TFIDFTextBean> textBeanList = tfc.getTextBean(allTextPathList);
-        // 计算每个词语的tf-idf
-        HashMap<String, HashSet<WordTFIDFBean>> wordTFIDFMap = tfc.calculateTFIDFForSearch(textBeanList, textNumber);
-
-
-//         对文本进行分词
-//        ArrayList<TextBean> arrTextBeans = tf.getTextBean(allTextPathList);
-
     }
 }

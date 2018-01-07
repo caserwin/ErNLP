@@ -71,4 +71,9 @@ public class WordTFIDFBean {
         return (this.path + this.word).hashCode();
     }
 
+    @Override
+    public String toString() {
+        return this.path + "\t" + this.word + "\t" + this.tf + "\t" + this.idf + "\t" + this.tfidf;
+    }
+
 }
