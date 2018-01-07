@@ -4,12 +4,10 @@ import base.BaseExtractTextKeyWords;
 import base.BaseFileUtil;
 import com.hankcs.hanlp.seg.common.Term;
 import com.hankcs.hanlp.tokenizer.NotionalTokenizer;
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
 import tfidf.util.TFIDFFileUtil;
 import util.CommonUtil;
+import util.ConstantUtil;
 import util.bean.KeyWordBean;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +20,6 @@ import java.util.Map;
 
 public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
 
-    private static Config conf = ConfigFactory.parseResources("common.conf");
     // query 的词频统计
     private static HashMap<String, Integer> wordCount = new HashMap<>();
 
@@ -50,11 +47,11 @@ public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
         TFIDFCore tfc = new TFIDFCore();
         // 获得所有训练文本路径
         ArrayList<String> allTextPathList = new ArrayList<>();
-        BaseFileUtil.getAllPath(conf.getString("nlp.corpus"), allTextPathList);
+        BaseFileUtil.getAllPath(ConstantUtil.TFIDF_CORPUS, allTextPathList);
         // 文章总数量
         int textNumber = allTextPathList.size();
         // 保存模型, 计算每个词语在多少文章出现。
-        tfc.saveIDFModel(conf.getString("nlp.model.idf"), allTextPathList, textNumber);
+        tfc.saveIDFModel(ConstantUtil.IDF_MODEL, allTextPathList, textNumber);
     }
 
     /**
@@ -86,7 +83,7 @@ public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
         // 用于存放每个词语的idf
         Map<String, Float> wordIDF = new HashMap<>();
         // 获取model
-        Map<String, Integer> modelMap = TFIDFFileUtil.getModelForIDF(conf.getString("nlp.model.idf"));
+        Map<String, Integer> modelMap = TFIDFFileUtil.getModelForIDF(ConstantUtil.IDF_MODEL);
 
         // 获取文章总数
         int allText = modelMap.get("text_Number") + 1;

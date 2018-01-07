@@ -8,10 +8,7 @@ import util.SegmentUtil;
 import util.bean.TermBean;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
 
 /**
@@ -74,11 +71,36 @@ public class TFIDFCore {
     }
 
     /**
-     *
+     * 保存tf-idf模型
      */
-    public void saveTFIDFModel() throws IOException {
+    public void saveTFIDFModel(ArrayList<TFIDFTextBean> arrTextBeans, int textNumber) throws IOException {
+        List<WordTFIDFBean> wordTFIDFMap = calculateTFIDF(arrTextBeans, textNumber);
 
+    }
 
+    /**
+     * 计算tf-idf
+     */
+    public List<WordTFIDFBean> calculateTFIDF(ArrayList<TFIDFTextBean> arrTextBeans, int textNumber) {
+        List<WordTFIDFBean> wordTFIDFMap = new ArrayList<>();
+        for (TFIDFTextBean textBean : arrTextBeans) {
+            HashMap<String, Integer> wordCount = textBean.getWordCount();
+            for (Entry entry : wordCount.entrySet()) {
+                WordTFIDFBean wordTFIDF = new WordTFIDFBean();
+                float tf = (float) entry.getValue() / (float) textBean.getWordNumber();
+                float idf = (float) Math.log(textNumber / (float) wordInDocNum.get(entry.getKey().toString()));
+                String word = entry.getKey().toString();
+
+                wordTFIDF.setPath(textBean.getTextPath());
+                wordTFIDF.setWord(word);
+                wordTFIDF.setTf(tf);
+                wordTFIDF.setIdf(idf);
+                wordTFIDF.setTFIDF(tf * idf);
+
+                wordTFIDFMap.add(wordTFIDF);
+            }
+        }
+        return wordTFIDFMap;
     }
 
 

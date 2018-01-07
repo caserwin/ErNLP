@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author yiding
  */
-public class SearchTFIDF {
+public class SearchDocumentTFIDF {
 
     public void getRelateTextBySearch(String search, int topN) throws IOException {
         // 先分词
