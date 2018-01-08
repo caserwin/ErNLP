@@ -1,6 +1,7 @@
 package chi.util;
 
 import base.BaseFileUtil;
+
 import java.io.*;
 import java.util.*;
 
@@ -42,7 +43,6 @@ public class CHIFileUtil extends BaseFileUtil {
     public static HashMap<String, HashMap<String, Float>> getCHIModel(String filePath) throws IOException {
         HashMap<String, HashMap<String, Float>> categoryKeyWord = new HashMap<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "utf-8"));
-
         String line;
         while ((line = br.readLine()) != null) {
             String[] str = line.split("\\s+");
@@ -50,7 +50,7 @@ public class CHIFileUtil extends BaseFileUtil {
                 categoryKeyWord.put(str[0], new HashMap<String, Float>() {{
                     put(str[1], Float.parseFloat(str[2]));
                 }});
-            }else {
+            } else {
                 categoryKeyWord.get(str[0]).put(str[1], Float.parseFloat(str[2]));
             }
         }

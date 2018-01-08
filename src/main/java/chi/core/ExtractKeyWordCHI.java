@@ -55,7 +55,7 @@ public class ExtractKeyWordCHI extends BaseExtractCateKeyWords {
     @Override
     public Map<String, KeyWordBean[]> extractKeyWords(int topN) throws Exception {
         Map<String, KeyWordBean[]> cateKeyWords = new HashMap<>();
-        HashMap<String, HashMap<String, Float>> categoryKeyWord = CHIFileUtil.getCHIModel(ConstantUtil.IDF_MODEL);
+        HashMap<String, HashMap<String, Float>> categoryKeyWord = CHIFileUtil.getCHIModel(ConstantUtil.CHI_MODEL);
         for (Map.Entry cateEntry : categoryKeyWord.entrySet()) {
             String cate = cateEntry.getKey().toString();
             KeyWordBean[] keyWords = CommonUtil.getTopNWord((HashMap<String, Float>) cateEntry.getValue(), topN);
