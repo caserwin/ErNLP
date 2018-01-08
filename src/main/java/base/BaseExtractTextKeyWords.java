@@ -1,7 +1,6 @@
 package base;
 
 import util.bean.KeyWordBean;
-import java.util.ArrayList;
 
 /**
  * @author yiding

@@ -41,7 +41,7 @@ public abstract class BaseFileUtil {
      */
     public static void getAllPath(String filePath, ArrayList<String> fileList) {
         File files = new File(filePath);
-        for (File file : files.listFiles()) {
+        for (File file : Objects.requireNonNull(files.listFiles())) {
             if (file.isDirectory()) {
                 getAllPath(file.getPath(), fileList);
             } else {

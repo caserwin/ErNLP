@@ -32,10 +32,8 @@ public class CHIFileUtil extends BaseFileUtil {
      * 获得类别
      */
     public static Set<String> getCategory(String filePath) {
-        Set<String> categorySet = new HashSet<>();
         File file = new File(filePath);
-        categorySet.addAll(Arrays.asList(file.list()));
-        return categorySet;
+        return new HashSet<>(Arrays.asList(Objects.requireNonNull(file.list())));
     }
 
     /**

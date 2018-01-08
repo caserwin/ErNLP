@@ -2,7 +2,6 @@ package tfidf.demo;
 
 import tfidf.core.ExtractKeyWordTFIDF;
 import util.bean.KeyWordBean;
-import java.util.ArrayList;
 
 /**
  * @author yiding

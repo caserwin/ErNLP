@@ -58,6 +58,10 @@ public class SearchDocumentTFIDF {
         // 生成 doc-weight 模型
         Map<String, Float> docWeight = new HashMap<>();
         for (TermBean term : termList) {
+            if (!wordTFIDFMap.containsKey(term.getWord())){
+                continue;
+            }
+
             HashSet<WordTFIDFBean> documentSet = wordTFIDFMap.get(term.getWord());
             for (WordTFIDFBean wb : documentSet) {
                 if (!docWeight.containsKey(wb.getPath())) {
