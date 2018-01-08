@@ -37,7 +37,7 @@ public class ExtractKeyWordTFIDF extends BaseExtractTextKeyWords {
         // 计算TD-IDF
         Map<String, Float> wordTFIDF = calculateTFIDF(termList);
         // 返回 topN 词语。
-        return CommonUtil.getTopN(wordTFIDF, topN);
+        return CommonUtil.getTopNWord(wordTFIDF, topN);
     }
 
     /**

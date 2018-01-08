@@ -3,15 +3,15 @@ package util.bean;
 /**
  * @author yiding
  */
-public class RelateTextBean {
+public class RelateDocBean {
     private String path;
     private String content;
-    private float coef;
+    private float weight;
 
-    public RelateTextBean(String path, String content, float coef) {
+    public RelateDocBean(String path, String content, float weight) {
         this.path = path;
         this.content = content;
-        this.coef = coef;
+        this.weight = weight;
     }
 
     public String getPath() {
@@ -30,11 +30,16 @@ public class RelateTextBean {
         this.content = content;
     }
 
-    public float getCoef() {
-        return coef;
+    public float getWeight() {
+        return weight;
     }
 
-    public void setCoef(float coef) {
-        this.coef = coef;
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return this.path + "\t" + this.weight + "\n" + this.content;
     }
 }

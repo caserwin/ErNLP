@@ -86,7 +86,7 @@ public class TFIDFCore {
             HashMap<String, Integer> wordCount = textBean.getWordCount();
             for (Entry entry : wordCount.entrySet()) {
                 WordTFIDFBean wordTFIDF = new WordTFIDFBean();
-                float tf = (float) entry.getValue() / (float) textBean.getWordNumber();
+                float tf = Float.parseFloat(entry.getValue().toString()) / (float) textBean.getWordNumber();
                 float idf = (float) Math.log(textNumber / (float) wordInDocNum.get(entry.getKey().toString()));
                 String word = entry.getKey().toString();
 

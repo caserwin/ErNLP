@@ -1,9 +1,11 @@
 package tfidf.util;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import base.BaseFileUtil;
 import tfidf.bean.WordTFIDFBean;
 
@@ -45,7 +47,7 @@ public class TFIDFFileUtil extends BaseFileUtil {
 
 
     /**
-     * 获取模型
+     * 获取IDF模型
      */
     public static HashMap<String, Integer> getModelForIDF(String filePath) throws Exception {
         HashMap<String, Integer> wordIDF = new HashMap<>();
@@ -59,4 +61,27 @@ public class TFIDFFileUtil extends BaseFileUtil {
         return wordIDF;
     }
 
+
+    /**
+     * 获取TF-IDF模型
+     */
+    public static List<WordTFIDFBean> getTFIDFModel(String filePath) throws Exception {
+        List<WordTFIDFBean> wordTFIDFModel = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "utf-8"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            WordTFIDFBean wb = new WordTFIDFBean();
+            String[] str = line.trim().split("\\s+");
+
+            wb.setPath(str[0]);
+            wb.setWord(str[1]);
+            wb.setTf(Float.parseFloat(str[2]));
+            wb.setIdf(Float.parseFloat(str[3]));
+            wb.setTFIDF(Float.parseFloat(str[4]));
+
+            wordTFIDFModel.add(wb);
+        }
+        br.close();
+        return wordTFIDFModel;
+    }
 }
