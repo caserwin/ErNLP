@@ -1,4 +1,4 @@
-package test.keyWordExtract;
+package testu.keyWordExtract;
 
 import com.hankcs.hanlp.HanLP;
 

@@ -1,4 +1,4 @@
-package test;
+package testu;
 
 import com.hankcs.hanlp.seg.common.Term;
 import com.hankcs.hanlp.tokenizer.NotionalTokenizer;

@@ -4,10 +4,7 @@ import base.BaseFileUtil;
 import util.bean.KeyWordBean;
 import util.bean.RelateDocBean;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author yiding
@@ -57,5 +54,11 @@ public class CommonUtil {
             relateDoc[i] = new RelateDocBean(path, content, weight);
         }
         return relateDoc;
+    }
+
+    /**
+     * 词频统计
+     */
+    public static void wordCount(){
     }
 }
