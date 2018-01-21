@@ -12,5 +12,5 @@ public abstract class BaseExtractTextKeyWords {
      * @param topN
      */
 
-    public abstract KeyWordBean[] extractKeyWords(String content, int topN) throws Exception;
+    public abstract  KeyWordBean[] extractKeyWords(String content, int topN) throws Exception;
 }

@@ -28,7 +28,8 @@ public class TFIDFCore {
             TFIDFTextBean textBean = new TFIDFTextBean();
             // 每篇文章的词频统计
             HashMap<String, Integer> wordCount = new HashMap<>();
-            int wordNumber = 0; // 每篇文章的词语数量
+            // 每篇文章的词语数量
+            int wordNumber = 0;
             String content = BaseFileUtil.readFileAllContent(path);
             // 这种分词方式，过滤了停止词，停止词可见：https://github.com/hankcs/HanLP/blob/master/data/dictionary/stopwords.txt
             List<TermBean> termList = SegmentUtil.segment(content, segType);

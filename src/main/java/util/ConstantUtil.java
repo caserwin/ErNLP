@@ -27,6 +27,12 @@ public class ConstantUtil {
 
 
     /**
+     * LDA 语料库路径
+     */
+    public static final String LDA_CORPUS = conf.getString("nlp.lda.corpus");
+
+
+    /**
      * 标点符号写法改成枚举类？？？会好些吗？
      */
 

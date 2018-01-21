@@ -4,17 +4,15 @@ import mi.bean.WordPairsBean;
 import util.ConstantUtil;
 import util.SegmentUtil;
 import util.bean.TermBean;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 /**
  * @author yidxue
  */
 public class MICore {
 
-    private static int type = 1;
+    private static int type = 2;
     private static int order = 2;
     // 一阶共现，词频统计
     private static HashMap<String, Integer> oneWordCount = new HashMap<>();
@@ -54,7 +52,7 @@ public class MICore {
             ArrayList<WordPairsBean> wordPairsBeans = slidingWindow(termBeans, order);
             // 一阶共现词频统计
             for (TermBean tb : termBeans) {
-                System.out.print(tb.getWord()+"\t");
+                System.out.print(tb.getWord() + "\t");
                 if (!oneWordCount.containsKey(tb.getWord())) {
                     oneWordCount.put(tb.getWord(), 1);
                 } else {
@@ -72,6 +70,19 @@ public class MICore {
                 }
             }
         }
+    }
+
+
+
+    private static double calculateMI(int allMultiWordCount, int allOneWordCount, int multiWordCount, int... oneWordCounts) {
+        double numeratorP = (double) multiWordCount / allMultiWordCount;
+
+        double denominatorP = 1;
+        for (int oneWordCount : oneWordCounts) {
+            denominatorP *= (double) oneWordCount / allOneWordCount;
+        }
+
+        return Math.log(numeratorP / denominatorP);
     }
 
 
