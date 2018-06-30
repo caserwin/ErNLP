@@ -1,7 +1,9 @@
 这里需要用到词频统计。
 考虑两种方式实现：一种是hash，一种是tire树。
 
-
+参考：
+https://github.com/hankcs/HanLP/wiki/%E6%96%B0%E8%AF%8D%E8%AF%86%E5%88%AB
+http://www.fuzihao.org/blog/2015/01/17/%E4%BA%92%E4%BF%A1%E6%81%AF%E7%9A%84%E7%90%86%E8%A7%A3/
 
 trie树介绍：https://wizardforcel.gitbooks.io/the-art-of-programming-by-july/content/06.09.html
 trie应用：

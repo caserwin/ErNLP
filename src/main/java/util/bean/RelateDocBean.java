@@ -3,31 +3,12 @@ package util.bean;
 /**
  * @author yiding
  */
-public class RelateDocBean {
-    private String path;
-    private String content;
+public class RelateDocBean extends DocBaseBean {
     private float weight;
 
     public RelateDocBean(String path, String content, float weight) {
-        this.path = path;
-        this.content = content;
+        super(path, content);
         this.weight = weight;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public float getWeight() {
@@ -40,6 +21,12 @@ public class RelateDocBean {
 
     @Override
     public String toString() {
-        return this.path + "\t" + this.weight + "\n" + this.content;
+        return this.getPath() + "\t" + this.weight + "\n" + this.getContent();
+    }
+
+
+    public static void main(String[] args) {
+        RelateDocBean relateDocBean = new RelateDocBean("path1", "1233445555", 0.5f);
+        System.out.println(relateDocBean.getPath() + "\t" + relateDocBean.getContent() + "\t" + relateDocBean.getWeight());
     }
 }

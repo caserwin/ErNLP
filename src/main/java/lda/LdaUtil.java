@@ -27,19 +27,18 @@ public class LdaUtil {
 	 *            limit of max words in a topic
 	 * @return a map array
 	 */
-	public static Map<String, Double>[] translate(double[][] phi,
-												  Vocabulary vocabulary, int limit) {
+	public static Map<String, Double>[] translate(double[][] phi, Vocabulary vocabulary, int limit) {
 		limit = Math.min(limit, phi[0].length);
 		Map<String, Double>[] result = new Map[phi.length];
 		for (int k = 0; k < phi.length; k++) {
-			Map<Double, String> rankMap = new TreeMap<Double, String>(
-					Collections.reverseOrder());
+			Map<Double, String> rankMap = new TreeMap<>(
+				Collections.reverseOrder());
 			for (int i = 0; i < phi[k].length; i++) {
 				rankMap.put(phi[k][i], vocabulary.getWord(i));
 			}
 			Iterator<Map.Entry<Double, String>> iterator = rankMap.entrySet()
 					.iterator();
-			result[k] = new LinkedHashMap<String, Double>();
+			result[k] = new LinkedHashMap<>();
 			for (int i = 0; i < limit; ++i) {
 				Map.Entry<Double, String> entry = iterator.next();
 				result[k].put(entry.getValue(), entry.getKey());
