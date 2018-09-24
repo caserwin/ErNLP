@@ -1,14 +1,7 @@
 package chi.demo;
 
-import base.BaseFileUtil;
-import chi.bean.CHITextBean;
-import chi.core.CHICore;
 import chi.core.ExtractKeyWordCHI;
 import util.bean.KeyWordBean;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -17,8 +10,10 @@ import java.util.Map;
 public class ExtractKeyWord {
 
     public static void main(String[] args) throws Exception {
-//        train();
+        // 训练模型
+//        ExtractKeyWordCHI.train();
 
+        // 提取关键词
         ExtractKeyWordCHI extractKeyWordCHI = new ExtractKeyWordCHI();
         Map<String, KeyWordBean[]> cateKeys = extractKeyWordCHI.extractKeyWords(5);
         for (Map.Entry cateKeyWord : cateKeys.entrySet()) {

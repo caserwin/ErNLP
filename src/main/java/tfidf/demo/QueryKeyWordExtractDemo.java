@@ -11,7 +11,7 @@ public class QueryKeyWordExtractDemo {
         // 训练
         ExtractKeyWordTFIDF.train();
         // 输出
-        String content = "互联网的互联网今年行情不好";
+        String content = "今年互联网就业行情不好";
         KeyWordBean[] topNKeyWord = new ExtractKeyWordTFIDF().extractKeyWords(content, 3);
         for (KeyWordBean kw : topNKeyWord) {
             System.out.println(kw.getWord() + "-->" + kw.getWeights());
