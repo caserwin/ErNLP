@@ -9,7 +9,7 @@ import util.bean.KeyWordBean;
 public class QueryKeyWordExtractDemo {
     public static void main(String[] args) throws Exception {
         // 训练
-//         QueryTFIDF.train();
+        ExtractKeyWordTFIDF.train();
         // 输出
         String content = "互联网的互联网今年行情不好";
         KeyWordBean[] topNKeyWord = new ExtractKeyWordTFIDF().extractKeyWords(content, 3);

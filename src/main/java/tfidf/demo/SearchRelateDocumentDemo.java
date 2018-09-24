@@ -4,7 +4,7 @@ import tfidf.core.SearchDocumentTFIDF;
 import util.bean.RelateDocBean;
 
 /**
- * @author cisco
+ * @author yiding
  */
 public class SearchRelateDocumentDemo {
 
