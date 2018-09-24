@@ -20,7 +20,7 @@ nlp {
 ### 2.1 CHI 卡方检验
 使用场景：用于提取关键词语。<br>
 使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/chi/demo/ExtractKeyWord.java<br>
-详细内容：
+详细内容：https://github.com/caserwin/ErNLP/tree/master/src/main/java/chi
 
 ### 2.2 TFIDF
 使用场景：用于提取指定文档关键词语、query 查询匹配最相关的文档。<br>

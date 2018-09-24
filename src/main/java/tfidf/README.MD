@@ -3,16 +3,15 @@
 ```
 SearchDocumentTFIDF.train();
 ```
-其实就是生成IDF文件。训练好的模型存放在 model/idf.txt，格式如下：
+其实就是生成IDF文件。训练好的模型存放在 model/tfidf.txt，格式如下：
 ```
-adCenter	1
-正式	2
-筛选	1
-以前	1
-跻身	1
-BBC	1
-盐田港	1
-考	1
+SogouC/Reduced/文化/1053.txt	孤独	0.00990099	5.750017	0.056930862
+SogouC/Reduced/文化/1053.txt	对象	0.00990099	3.9813993	0.039419793
+SogouC/Reduced/文化/1053.txt	投射	0.00990099	7.2839475	0.07211829
+SogouC/Reduced/文化/1053.txt	榆野	0.01980198	9.681843	0.19171965
+SogouC/Reduced/文化/1053.txt	著名	0.00990099	3.9714158	0.039320946
+SogouC/Reduced/文化/1053.txt	感觉	0.00990099	3.447432	0.03413299
+SogouC/Reduced/文化/1053.txt	四月	0.02970297	4.776568	0.14187826
 ```
 ### 1.2 使用示例
 就是查询 5个最相关的文档
@@ -46,17 +45,18 @@ SogouC/Reduced/财经/1268.txt	0.3988409
 ## 2. 提取指定文档关键词
 ### 2.1 训练语料
 ```
-ExtractKeyWordCHI.train();
+ExtractKeyWordTFIDF.train();
 ```
-生成TF-IDF文件。训练好的模型存放在 model/tfidf.txt，格式如下：
+生成TF-IDF文件。训练好的模型存放在 model/idf.txt，格式如下：
 ```
-SogouC/Reduced/文化/1053.txt	孤独	0.00990099	5.750017	0.056930862
-SogouC/Reduced/文化/1053.txt	对象	0.00990099	3.9813993	0.039419793
-SogouC/Reduced/文化/1053.txt	投射	0.00990099	7.2839475	0.07211829
-SogouC/Reduced/文化/1053.txt	榆野	0.01980198	9.681843	0.19171965
-SogouC/Reduced/文化/1053.txt	著名	0.00990099	3.9714158	0.039320946
-SogouC/Reduced/文化/1053.txt	感觉	0.00990099	3.447432	0.03413299
-SogouC/Reduced/文化/1053.txt	四月	0.02970297	4.776568	0.14187826
+adCenter	1
+正式	2
+筛选	1
+以前	1
+跻身	1
+BBC	1
+盐田港	1
+考	1
 ```
 ### 2.2 使用示例
 输出指定文档的关键词。
