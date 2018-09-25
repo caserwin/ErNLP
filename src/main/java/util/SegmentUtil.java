@@ -43,14 +43,11 @@ public class SegmentUtil {
         return termBeanLS;
     }
 
-
-
     public static void main(String[] args){
         String text = "江西鄱阳湖干枯，中国最大的淡水湖变成大草原";
         List<TermBean> lsterm =  standardTokenizerByHanlp(text);
         for (TermBean termBean:lsterm) {
             System.out.println(termBean.toString());
         }
-
     }
 }

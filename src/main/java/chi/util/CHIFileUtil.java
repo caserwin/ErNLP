@@ -1,7 +1,6 @@
 package chi.util;
 
 import base.BaseFileUtil;
-
 import java.io.*;
 import java.util.*;
 
@@ -38,9 +37,9 @@ public class CHIFileUtil extends BaseFileUtil {
     }
 
     /**
-     * 获得模型
+     * 获得category-word 模型
      */
-    public static HashMap<String, HashMap<String, Float>> getCHIModel(String filePath) throws IOException {
+    public static HashMap<String, HashMap<String, Float>> getCateKeyCHIModel(String filePath) throws IOException {
         HashMap<String, HashMap<String, Float>> categoryKeyWord = new HashMap<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "utf-8"));
         String line;
@@ -52,6 +51,27 @@ public class CHIFileUtil extends BaseFileUtil {
                 }});
             } else {
                 categoryKeyWord.get(str[0]).put(str[1], Float.parseFloat(str[2]));
+            }
+        }
+        br.close();
+        return categoryKeyWord;
+    }
+
+    /**
+     * 获得word-category 模型
+     */
+    public static HashMap<String, HashMap<String, Float>> getKeyCateCHIModel(String filePath) throws IOException {
+        HashMap<String, HashMap<String, Float>> categoryKeyWord = new HashMap<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "utf-8"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] str = line.split("\\s+");
+            if (!categoryKeyWord.containsKey(str[1])) {
+                categoryKeyWord.put(str[1], new HashMap<String, Float>() {{
+                    put(str[0], Float.parseFloat(str[2]));
+                }});
+            } else {
+                categoryKeyWord.get(str[1]).put(str[0], Float.parseFloat(str[2]));
             }
         }
         br.close();

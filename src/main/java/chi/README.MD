@@ -1,6 +1,20 @@
 ## 1. API 使用说明
 ### 1.1 语料库格式
 语料格式必须如[SogouC.Reduced](https://github.com/caserwin/ErNLP/tree/master/SogouC/Reduced)所示，每个文件夹名为类名，文件夹下的文本文件作为该类下的语料。
+如下所示：
+```
+    根目录
+    ├── 分类A
+    │   └── 1.txt
+    │   └── 2.txt
+    │   └── 3.txt
+    ├── 分类B
+    │   └── 1.txt
+    │   └── ...
+    └── 分类C
+```
+
+
 ### 1.2 训练模型
 ```
 ExtractKeyWordCHI.train();
