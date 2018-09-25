@@ -18,14 +18,13 @@ nlp {
 
 ## 2. 目前实现
 ### 2.1 CHI 卡方检验
-使用场景：用于提取每个类别的关键词语。<br>
-使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/chi/demo/ExtractKeyWord.java<br>
+使用场景：用于提取每个类别的关键词语、文本分类<br>
+提取关键词使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/chi/demo/ExtractKeyWordDemo.java <br>
+文本分类使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/chi/demo/TextClassifierDemo.java <br>
 详细内容：https://github.com/caserwin/ErNLP/tree/master/src/main/java/chi
 
 ### 2.2 TFIDF
 使用场景：用于提取指定文档关键词语、query 查询匹配最相关的文档。<br>
-提取关键词语使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/tfidf/demo/QueryKeyWordExtractDemo.java<br>
-query 查询匹配使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/tfidf/demo/SearchRelateDocumentDemo.java<br>
+提取关键词语使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/tfidf/demo/QueryKeyWordExtractDemo.java <br>
+query 查询匹配使用示例：https://github.com/caserwin/ErNLP/blob/master/src/main/java/tfidf/demo/SearchRelateDocumentDemo.java <br>
 详细内容：https://github.com/caserwin/ErNLP/tree/master/src/main/java/tfidf
-
-
