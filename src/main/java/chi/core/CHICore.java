@@ -96,8 +96,8 @@ public class CHICore {
         return dicWordSet;
     }
 
-    private float calculateCHI(int a, int b, int c, int d) {
-        int n = a + b + c + d;
+    private float calculateCHI(long a, long b, long c, long d) {
+        long n = a + b + c + d;
         return (float) (n * Math.pow(a * d - b * c, 2) / ((a + c) * (a + b) * (b + d) * (c + d)));
     }
 }
