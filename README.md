@@ -30,5 +30,5 @@ query 查询匹配使用示例：https://github.com/caserwin/ErNLP/blob/master/s
 详细内容：https://github.com/caserwin/ErNLP/tree/master/src/main/java/tfidf
 
 ### 2.3 HMM分词
-详细内容：https://github.com/caserwin/ErNLP/tree/master/src/main/java/segment/hmm
+详细内容：https://github.com/caserwin/ErNLP/tree/master/src/main/java/segment/hmm  <br>
 示例：https://github.com/caserwin/ErNLP/tree/master/src/main/java/segment/hmm/demo
