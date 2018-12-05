@@ -1,4 +1,4 @@
-package segment.core;
+package segment.hmm.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;

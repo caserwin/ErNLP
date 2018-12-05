@@ -1,7 +1,7 @@
-package segment.core;
+package segment.hmm.core;
 
 /**
- *
+ * refer: https://github.com/hankcs/Viterbi
  */
 public class Viterbi {
     /**

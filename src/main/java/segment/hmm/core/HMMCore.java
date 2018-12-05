@@ -1,8 +1,7 @@
-package segment.core;
+package segment.hmm.core;
 
 import java.util.*;
 import java.text.DecimalFormat;
-
 import segment.bean.CharBean;
 
 /**
