@@ -28,10 +28,10 @@ public class HMMCore {
     }
 
     public void train() {
+        int index = 0;
         for (String sentence : this.corpus) {
             String[] wordAndTags = sentence.split("\\s+");
             String lastTag = "";
-            int index = 0;
             for (int i = 0; i < wordAndTags.length; i++) {
                 String[] tmp = wordAndTags[i].split("/");
                 String word = tmp[0];

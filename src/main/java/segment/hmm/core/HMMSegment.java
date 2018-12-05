@@ -1,5 +1,6 @@
 package segment.hmm.core;
 
+import segment.util.ToolUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +25,8 @@ public class HMMSegment {
         double[][] emissionMatrix = hmmCore.getEmissionMatrix();
         double[] startArray = hmmCore.getStartProbArray();
 
+//        ToolUtil.printMatrix(stateMatrix);
+//        ToolUtil.printMatrix(emissionMatrix);
         HashMap<Integer, String> idStateMap = hmmCore.getStateMap();
         HashMap<String, Integer> wordIDMap = hmmCore.getWordIDMap();
         int[] observations = getWordIndex(sentences.toCharArray(), wordIDMap);
@@ -45,14 +48,12 @@ public class HMMSegment {
         StringBuilder sentence = new StringBuilder();
 
         for (int i = 0; i < result.length; i++) {
-            System.out.print(idStateMap.get(result[i]) + " ");
             if ("S".equals(idStateMap.get(result[i])) || "E".equals(idStateMap.get(result[i]))) {
                 sentence.append(words[i]).append("  ");
             } else {
                 sentence.append(words[i]);
             }
         }
-        System.out.println();
         return sentence.toString().trim();
     }
 }

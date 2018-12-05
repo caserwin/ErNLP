@@ -14,10 +14,9 @@ public class HMMSegmentDemo {
         corpus.add("KFC/S 的/S 汉/B 堡/M 包/E");
         corpus.add("广/B 场/E 很/S 漂/B 亮/E");
         corpus.add("汉/B 堡/M 包/E 很/S 好/B 吃/E");
-//        corpus.add("我/S 在/S 广/B 场/E");
 
         HMMSegment hmmSegment = new HMMSegment();
         hmmSegment.train(corpus);
-        System.out.println(hmmSegment.segment("我在广场吃炸鸡"));
+        System.out.println(hmmSegment.segment("我在广场吃汉堡包"));
     }
 }
